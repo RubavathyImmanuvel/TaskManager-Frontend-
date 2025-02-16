@@ -5,7 +5,7 @@ import axios from 'axios';
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:8080/api/tasks';
+  private apiUrl = 'https://taskmanager-backend-y1kn.onrender.com/api/tasks'; // Fixed URL
 
   async getTasks() {
     const response = await axios.get(this.apiUrl);
