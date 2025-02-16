@@ -1,0 +1,58 @@
+<div class="container mt-4">
+    <h2>Task List</h2>
+  
+    <!-- Task Form -->
+    <app-task-form [task]="selectedTask" (taskSaved)="onTaskSaved()"></app-task-form>
+  
+    <!-- Task List -->
+    <div class="table-responsive">
+      <table class="table table-hover mt-3 shadow-sm rounded bg-white">
+        <thead class="thead-dark">
+          <tr class="bg-primary text-white">
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.dueDate }}</td>
+            <td>
+              <span class="badge" 
+                    [ngClass]="{
+                      'bg-success': task.priority === 'LOW',
+                      'bg-warning': task.priority === 'MEDIUM',
+                      'bg-danger': task.priority === 'HIGH'
+                    }">
+                {{ task.priority }}
+              </span>
+            </td>
+            <td>
+              <span class="badge" 
+                    [ngClass]="{
+                      'bg-secondary': task.status === 'PENDING',
+                      'bg-primary': task.status === 'IN_PROGRESS',
+                      'bg-success': task.status === 'COMPLETED'
+                    }">
+                {{ task.status }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary" (click)="editTask(task)">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(task.id)">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
